@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.Entities
+﻿namespace Console.Test.Entities
 {
     internal class PersonEntity
     {

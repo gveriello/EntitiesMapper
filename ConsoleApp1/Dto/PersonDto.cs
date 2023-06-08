@@ -1,7 +1,7 @@
-﻿using ConsoleApp1.Entities;
+﻿using Console.Test.Entities;
 using EntitiesMapper.CustomAttribute;
 
-namespace ConsoleApp1.Dto
+namespace Console.Test.Dto
 {
     internal class PersonDto
     {

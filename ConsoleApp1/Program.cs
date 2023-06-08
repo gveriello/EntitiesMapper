@@ -1,8 +1,8 @@
-﻿using ConsoleApp1.Dto;
-using ConsoleApp1.Entities;
+﻿using Console.Test.Dto;
+using Console.Test.Entities;
 using EntitiesMapper;
 
-namespace ConsoleApp1
+namespace Console.Test
 {
     internal class Program
     {
@@ -28,8 +28,8 @@ namespace ConsoleApp1
             var dto = new PersonDto();
             var dto2 = new PersonDto();
 
-            Mapper.CopyTo<PersonEntity, PersonDto>(entity, dto);
-            Mapper.CopyTo<PersonEntity2, PersonDto>(entity2, dto2);
+            Mapper.CopyTo(entity, dto);
+            Mapper.CopyTo(entity2, dto2);
         }
     }
 }
