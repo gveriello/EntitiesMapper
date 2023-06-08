@@ -7,19 +7,23 @@ namespace EntitiesMapper
     {
         public static void CopyTo<TSource, TDestination>(TSource source, TDestination destination)
         {
-            MapperEntities.LoadEntity(typeof(TSource));
-            MapperEntities.LoadEntity(typeof(TDestination));
+            var sourceType = typeof(TSource);
+            var destinationType = typeof(TDestination);
 
-            if (MapperEntities.EntityHasProperties(typeof(TSource)) && MapperEntities.EntityHasProperties(typeof(TDestination)))
+            MapperEntities.LoadEntity(sourceType);
+            MapperEntities.LoadEntity(destinationType);
+
+            if (MapperEntities.EntityHasProperties(sourceType) && MapperEntities.EntityHasProperties(destinationType))
             {
-                var destinationProperties = MapperEntities.GetPropertiesByType(typeof(TDestination));
-                foreach (var kvp in MapperEntities.GetPropertiesByType(typeof(TSource)))
+                var destinationProperties = MapperEntities.GetPropertiesByType(destinationType);
+                foreach (var kvp in MapperEntities.GetPropertiesByType(sourceType))
                 {
                     var destinationSetters = destinationProperties?.Where(prop =>
+                                prop.CanWrite &&
                                 prop.Name == kvp.Name && prop.PropertyType == kvp.PropertyType ||
                                 prop.GetCustomAttributes<MapToAttribute>()?.FirstOrDefault(attribute => attribute.Property == kvp.Name &&
                                                                                                 (attribute.SourceToMap != null &&
-                                                                                                attribute.SourceToMap == typeof(TSource)) &&
+                                                                                                attribute.SourceToMap == sourceType) &&
                                                                                             !attribute.IgnoreMap)
                                                                                             is not null);
 
