@@ -12,5 +12,11 @@
             Property = property;
             IgnoreMap = ignoreMap;
         }
+
+        public MapToAttribute(string property, bool ignoreMap = false)
+        {
+            Property = property;
+            IgnoreMap = ignoreMap;
+        }
     }
 }

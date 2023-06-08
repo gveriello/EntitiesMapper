@@ -1,30 +1,25 @@
 ﻿using EntitiesMapper.CustomAttribute;
-using EntitiesMapper.EntitiesWorkers;
 using System.Reflection;
 
 namespace EntitiesMapper
 {
     public class Mapper
     {
-        public Mapper(params Type[] typesToLoad)
-        {
-            Task.Run(() => typesToLoad?.ToList().ForEach(type => EntitiesData.LoadEntity(type)));
-        }
-
         public static void CopyTo<TSource, TDestination>(TSource source, TDestination destination)
         {
-            EntitiesData.LoadEntity(typeof(TSource));
-            EntitiesData.LoadEntity(typeof(TDestination));
+            MapperEntities.LoadEntity(typeof(TSource));
+            MapperEntities.LoadEntity(typeof(TDestination));
 
-            if (EntitiesData.EntityHasProperties(typeof(TSource)) && EntitiesData.EntityHasProperties(typeof(TDestination)))
+            if (MapperEntities.EntityHasProperties(typeof(TSource)) && MapperEntities.EntityHasProperties(typeof(TDestination)))
             {
-                var destinationProperties = EntitiesData.GetPropertiesByType(typeof(TDestination));
-                foreach (var kvp in EntitiesData.GetPropertiesByType(typeof(TSource)))
+                var destinationProperties = MapperEntities.GetPropertiesByType(typeof(TDestination));
+                foreach (var kvp in MapperEntities.GetPropertiesByType(typeof(TSource)))
                 {
                     var destinationSetters = destinationProperties?.Where(prop =>
                                 prop.Name == kvp.Name && prop.PropertyType == kvp.PropertyType ||
                                 prop.GetCustomAttributes<MapToAttribute>()?.FirstOrDefault(attribute => attribute.Property == kvp.Name &&
-                                                                                            attribute.SourceToMap == typeof(TSource) &&
+                                                                                                (attribute.SourceToMap != null &&
+                                                                                                attribute.SourceToMap == typeof(TSource)) &&
                                                                                             !attribute.IgnoreMap)
                                                                                             is not null);
 
