@@ -6,6 +6,11 @@ namespace EntitiesMapper
 {
     public class Mapper
     {
+        public Mapper(params Type[] typesToLoad)
+        {
+            Task.Run(() => typesToLoad?.ToList().ForEach(type => EntitiesData.LoadEntity(type)));
+        }
+
         public static void CopyTo<TSource, TDestination>(TSource source, TDestination destination)
         {
             EntitiesData.LoadEntity(typeof(TSource));
