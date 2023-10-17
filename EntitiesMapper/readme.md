@@ -135,10 +135,13 @@ internal class Program
 }
 ```
 
+You can also copy list in another of same or different type.
+Please visit EntitiesMapper.Tests folder for other examples. 
+
 
 ## Roadmap
 
-- Performance improvements
+- Performance improvements 
 
 - Mapping classes to register map properties (if you don't like using [MapToAttribute])
 
