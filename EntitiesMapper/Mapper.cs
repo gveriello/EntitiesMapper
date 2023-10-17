@@ -1,14 +1,18 @@
 ﻿using EntitiesMapper.CustomAttribute;
+using System.Collections.ObjectModel;
 using System.Reflection;
 
 namespace EntitiesMapper
 {
     public class Mapper
     {
-        public static void CopyTo<TSource, TDestination>(TSource source, TDestination destination)
+        public static void CopyObject<TSource, TDestination>(TSource source, out TDestination destination)
+            where TDestination : new()
         {
             var sourceType = typeof(TSource);
             var destinationType = typeof(TDestination);
+
+            destination = new();
 
             MapperEntities.LoadEntity(sourceType);
             MapperEntities.LoadEntity(destinationType);
@@ -34,6 +38,19 @@ namespace EntitiesMapper
                             destinationSetter.SetValue(destination, sourceValue);
                     }
                 }
+            }
+        }
+
+        public static void CopyList<TSource, TDestination>(ICollection<TSource> source, out ICollection<TDestination> destination)
+            where TDestination : new()
+        {
+            if (source is null) throw new ArgumentNullException("Source list is null.");
+            destination = new Collection<TDestination>();
+
+            foreach (var sourceValue in source)
+            {
+                CopyObject(sourceValue, out TDestination toAdd);
+                destination.Add(toAdd);
             }
         }
     }
