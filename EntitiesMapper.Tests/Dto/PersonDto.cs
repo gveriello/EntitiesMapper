@@ -18,7 +18,7 @@ namespace EntitiesMapper.Tests.Dto
         public int Età { get; set; }
 
         [MapTo(typeof(PersonEntity), "Rule")]
-        [MapTo(typeof(PersonEntity2), "ProfessioneAttuale")]
+        [MapTo(typeof(PersonEntity2), "ProfessioneAttuale", true)]
         public string Professione { get; set; }
 
         [MapTo(typeof(PersonEntity), "BirthdayYear")]

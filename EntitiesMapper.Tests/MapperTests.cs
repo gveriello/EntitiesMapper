@@ -100,9 +100,27 @@ namespace EntitiesMapper.Tests
                 Assert.AreEqual(currentSourceFriend.Address, currentAnotherFriend.Address);
             }
         }
-
         [TestMethod("Copia di una lista in un'altra di tipo diverso")]
         public void Test4()
+        {
+            Mapper.CopyList<PersonEntity, PersonDto>(FriendsPersonsEntities, out var anotherFriendsPersonsEntities);
+
+            for (int friendIndex = 0; friendIndex < anotherFriendsPersonsEntities.Count; friendIndex++)
+            {
+                var currentSourceFriend = FriendsPersonsEntities[friendIndex];
+                var currentAnotherFriend = anotherFriendsPersonsEntities.ElementAt(friendIndex);
+
+                Assert.AreEqual(currentSourceFriend.Name, currentAnotherFriend.Nome);
+                Assert.AreEqual(currentSourceFriend.Surname, currentAnotherFriend.Cognome);
+                Assert.AreEqual(currentSourceFriend.Age, currentAnotherFriend.Età);
+                Assert.AreEqual(currentSourceFriend.Rule, currentAnotherFriend.Professione);
+                Assert.AreEqual(currentSourceFriend.BirthdayYear, currentAnotherFriend.AnnoNascita);
+                Assert.AreEqual(currentSourceFriend.Address, currentAnotherFriend.ViaResidenza);
+            }
+        }
+
+        [TestMethod("Copia di una lista in un'altra di tipo diverso con una proprietà ignorata durante il mapping")]
+        public void Test5()
         {
             Mapper.CopyList<PersonEntity2, PersonDto>(FriendsPersonsEntities2, out var anotherFriendsPersonsEntities2);
 
@@ -114,7 +132,9 @@ namespace EntitiesMapper.Tests
                 Assert.AreEqual(currentSourceFriend.NomeNascita, currentAnotherFriend.Nome);
                 Assert.AreEqual(currentSourceFriend.SurnameNascita, currentAnotherFriend.Cognome);
                 Assert.AreEqual(currentSourceFriend.EtàAttuale, currentAnotherFriend.Età);
-                Assert.AreEqual(currentSourceFriend.ProfessioneAttuale, currentAnotherFriend.Professione);
+
+                //Non verrà copiata perchè contiene null nella definizione del MapToAttribute
+                Assert.IsNull(currentAnotherFriend.Professione);
 
                 Assert.IsTrue(string.IsNullOrEmpty(currentAnotherFriend.ViaResidenza));
                 Assert.IsTrue(currentAnotherFriend.AnnoNascita is 0);

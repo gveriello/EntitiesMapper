@@ -24,12 +24,12 @@ namespace EntitiesMapper
         private static bool EntityIsLoadedOrThrowException(Type type)
             => EntitiesData.Keys?.Contains(type) ?? throw new ArgumentException($"{type.Name} is not loaded. Please call before {nameof(LoadEntity)} method.");
 
-        internal static PropertyInfo[] GetPropertiesByType(Type type)
+        internal static Dictionary<string, PropertyInfo> GetPropertiesByType(Type type)
         {
             EntityIsLoadedOrThrowException(type);
 
             EntitiesData.TryGetValue(type, out var properties);
-            return properties;
+            return properties.ToDictionary(prop => prop.Name, prop => prop);
         }
 
         internal static bool EntityHasProperties(Type type)
