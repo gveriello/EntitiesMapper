@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -17,10 +17,14 @@
     <FileVersion>1.0.0.1</FileVersion>
     <Version>1.0.6</Version>
     <PackageProjectUrl>https://github.com/gveriello/EntitiesMapper</PackageProjectUrl>
-    <PackageIcon>download.png</PackageIcon>
+    <PackageIcon>emicon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="emicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
