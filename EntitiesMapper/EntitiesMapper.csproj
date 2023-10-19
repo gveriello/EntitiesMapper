@@ -15,8 +15,9 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageProjectUrl>https://github.com/gveriello/EntitiesMapper</PackageProjectUrl>
+    <PackageIcon>download.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
