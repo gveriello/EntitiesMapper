@@ -1,4 +1,6 @@
-﻿namespace EntitiesMapper.Tests.Entities
+﻿using EntitiesMapper.CustomAttribute;
+
+namespace EntitiesMapper.Tests.Entities
 {
     internal class PersonEntity
     {

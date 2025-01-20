@@ -6,6 +6,5 @@
         public string SurnameNascita { get; set; }
         public int EtàAttuale { get; set; }
         public string ProfessioneAttuale { get; set; }
-
     }
 }

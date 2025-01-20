@@ -5,26 +5,26 @@ namespace EntitiesMapper.Tests.Dto
 {
     internal class PersonDto
     {
-        [MapTo(typeof(PersonEntity), "Name")]
-        [MapTo(typeof(PersonEntity2), "NomeNascita")]
+        [MapTo<PersonEntity>(nameof(PersonEntity.Name))]
+        [MapTo<PersonEntity2>(nameof(PersonEntity2.NomeNascita))]
         public string Nome { get; set; }
 
-        [MapTo(typeof(PersonEntity), "Surname")]
-        [MapTo(typeof(PersonEntity2), "SurnameNascita")]
+        [MapTo<PersonEntity>(nameof(PersonEntity.Surname))]
+        [MapTo<PersonEntity2>(nameof(PersonEntity2.SurnameNascita))]
         public string Cognome { get; set; }
 
-        [MapTo(typeof(PersonEntity), "Age")]
-        [MapTo(typeof(PersonEntity2), "EtàAttuale")]
+        [MapTo<PersonEntity>(nameof(PersonEntity.Age))]
+        [MapTo<PersonEntity2>(nameof(PersonEntity2.EtàAttuale))]
         public int Età { get; set; }
 
-        [MapTo(typeof(PersonEntity), "Rule")]
-        [MapTo(typeof(PersonEntity2), "ProfessioneAttuale", true)]
+        [MapTo<PersonEntity>(nameof(PersonEntity.Rule))]
+        [MapTo<PersonEntity2>(nameof(PersonEntity2.ProfessioneAttuale))]
         public string Professione { get; set; }
 
-        [MapTo(typeof(PersonEntity), "BirthdayYear")]
+        [MapTo<PersonEntity>(nameof(PersonEntity.BirthdayYear))]
         public int AnnoNascita { get; set; }
 
-        [MapTo(typeof(PersonEntity), "Address")]
+        [MapTo<PersonEntity>(nameof(PersonEntity.Address))]
         public string ViaResidenza { get; set; }
     }
 }
